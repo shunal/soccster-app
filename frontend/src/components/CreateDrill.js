@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Stage, Layer, Circle, Rect, RegularPolygon, Arrow } from 'react-konva';
-import DrillForms from './DrillForms';
+import { Stage, Layer, Circle, Rect, RegularPolygon, } from 'react-konva';
 import Konva from 'konva';
-
 
 
 
@@ -10,18 +8,48 @@ export default class CreateDrill extends Component {
   state = {
     x: 0,
     y: 0,
+    
   };
 
-  
-  
+  handleSubmit = (event) => {
+    event.preventDefault()
+    fetch('http://localhost:3001/drills', {
+      method: 'post',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        title: this.state.title,
+        description: this.state.description,
+        tags: this.state.tags,
+        drawing: this.state.drawing
+        })
+      }
+     );
+  }
+
+  myTitleHandler = (event) => {
+      this.setState({title: event.target.value})
+      console.log(this.state)
+  }
+
+  myDescriptionHandler = (event) => {
+    this.setState({description: event.target.value})
+    console.log(this.state)
+  }
+
+  myTagHandler = (event) => {
+    this.setState({tags: event.target.value})
+    console.log(this.state)
+  }
 
   
-  
+
+
 
   render() {
     return (
+
         <div>
-      <Stage ref="bigStage" width={window.innerWidth} height={window.innerHeight}>
+      <Stage ref="bigStage" id="bigStage" width={1000} height={500}>
         <Layer ref="bigLayer">
         
             <Circle 
@@ -36,11 +64,9 @@ export default class CreateDrill extends Component {
                 x={100} 
                 y={150} 
                 radius={15} 
-                fill="green" 
-                
-                
+                fill="green"    
             />
-            
+
 
             <Rect
                 x={90}
@@ -49,7 +75,6 @@ export default class CreateDrill extends Component {
                 height={20}
                 fill="white"
                 stroke="green"
-                
             />
 
             <RegularPolygon 
@@ -57,8 +82,7 @@ export default class CreateDrill extends Component {
                 y={250}
                 sides={3}
                 radius={8}
-                fill="orange"
-                
+                fill="orange" 
             />
 
             <Circle 
@@ -66,26 +90,16 @@ export default class CreateDrill extends Component {
                 y={300} 
                 radius={6} 
                 fill="white" 
-                stroke="black"
-                   
+                stroke="black"     
             />
 
             <Circle 
-                         x={100} 
-                         y={50} 
-                         radius={15} 
-                         fill="red" 
+                x={100} 
+                y={50} 
+                radius={15} 
+                fill="red" 
                 
-                    />
-            {/* <Arrow 
-                         x={100} 
-                         y={350} 
-                         points={[]}
-                         pointerLength={10}
-                         pointerWidth={10}
-                         fill="black" 
-                
-            /> */}
+            />
             
 
             <Circle 
@@ -103,25 +117,30 @@ export default class CreateDrill extends Component {
                     circle.position({x: 100, y: 50});
                     this.refs.bigStage.draw();
                     let lastPosition = circle._lastPos
-                    
+                    let json = stage.toJSON();
                     this.setState({
+                        drawing: json,
                         x: lastPosition.x,
                         y: lastPosition.y
+
                     })
+                    
+                    
                     console.log(this.state);
                     
-                    var newCircle = new Konva.Circle({
+                    let newCircle = new Konva.Circle({
                         x: this.state.x,
                         y: this.state.y,
                         radius: 15,
                         fill: 'red',
                         draggable: true
+
                         
                       });
                 
                       // add the shape to the layer
                       this.refs.bigLayer.add(newCircle);
-                
+                      
                       // add the layer to the stage
                       this.refs.bigStage.add(layer);
                     }
@@ -144,14 +163,16 @@ export default class CreateDrill extends Component {
                     circle.position({x: 100, y: 100});
                     this.refs.bigStage.draw();
                     let lastPosition = circle._lastPos
-                    
+                    let json = stage.toJSON();
                     this.setState({
+                        drawing: json,
                         x: lastPosition.x,
                         y: lastPosition.y
+
                     })
                     console.log(this.state);
                     
-                    var newCircle = new Konva.Circle({
+                    let newCircle = new Konva.Circle({
                         x: this.state.x,
                         y: this.state.y,
                         radius: 15,
@@ -186,14 +207,16 @@ export default class CreateDrill extends Component {
                     circle.position({x: 100, y: 150});
                     this.refs.bigStage.draw();
                     let lastPosition = circle._lastPos
-                    
+                    let json = stage.toJSON();
                     this.setState({
+                        drawing: json,
                         x: lastPosition.x,
                         y: lastPosition.y
+
                     })
                     console.log(this.state);
                     
-                    var newCircle = new Konva.Circle({
+                    let newCircle = new Konva.Circle({
                         x: this.state.x,
                         y: this.state.y,
                         radius: 15,
@@ -231,14 +254,16 @@ export default class CreateDrill extends Component {
                     circle.position({x: 90, y: 200});
                     this.refs.bigStage.draw();
                     let lastPosition = circle._lastPos
-                    
+                    let json = stage.toJSON();
                     this.setState({
+                        drawing: json,
                         x: lastPosition.x,
                         y: lastPosition.y
+
                     })
                     console.log(this.state);
                     
-                    var newCircle = new Konva.Rect({
+                    let newCircle = new Konva.Rect({
                         x: this.state.x,
                         y: this.state.y,
                         width: 50,
@@ -276,14 +301,16 @@ export default class CreateDrill extends Component {
                     circle.position({x: 95, y: 250});
                     this.refs.bigStage.draw();
                     let lastPosition = circle._lastPos
-                    
+                    let json = stage.toJSON();
                     this.setState({
+                        drawing: json,
                         x: lastPosition.x,
                         y: lastPosition.y
+
                     })
                     console.log(this.state);
                     
-                    var newCircle = new Konva.RegularPolygon({
+                    let newCircle = new Konva.RegularPolygon({
                         x: this.state.x,
                         y: this.state.y,
                         sides: 3,
@@ -311,7 +338,6 @@ export default class CreateDrill extends Component {
                 fill="white" 
                 stroke="black"
                 draggable 
-                
                 name= "draggableBall"
                 onDragEnd = {() =>{
                     let layer = this.refs.bigLayer;
@@ -321,14 +347,16 @@ export default class CreateDrill extends Component {
                     circle.position({x: 95, y: 300});
                     this.refs.bigStage.draw();
                     let lastPosition = circle._lastPos
-                    
+                    let json = stage.toJSON();
                     this.setState({
+                        drawing: json,
                         x: lastPosition.x,
                         y: lastPosition.y
+
                     })
                     console.log(this.state);
                     
-                    var newCircle = new Konva.Circle({
+                    let newCircle = new Konva.Circle({
                         x: this.state.x,
                         y: this.state.y,
                         radius: 6,
@@ -344,16 +372,41 @@ export default class CreateDrill extends Component {
                 
                       // add the layer to the stage
                       this.refs.bigStage.add(layer);
+
                     }
                 
                 }
-            />
-            
-            
+            />      
         </Layer>
       </Stage>
-    <DrillForms></DrillForms>
+     
+
+      <form>
+      Title
+      <input
+        type='text'
+        onChange={this.myTitleHandler}
+      />
+
+      Description
+      <input
+        
+        type='text'
+        onChange={this.myDescriptionHandler}
+      />
+
+      Tags
+      <input
+        
+        type='text'
+        onChange={this.myTagHandler}
+      />
+      <button onClick={this.handleSubmit} >Submit Drill</button>
+      
+
+      </form>
     </div>
+
     );
   }
 }

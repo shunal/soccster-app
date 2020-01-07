@@ -8,20 +8,52 @@ export default class DrillForms extends React.Component {
 
       };
     }
-
-    myChangeHandler = (event) => {
-        this.setState({username: event.target.value})
+    saveStage = (event) => {
+      this.setState({data: document.getElementsByClassName("konvajs-content")})
+      console.log(this.state)
     }
+
+    myTitleHandler = (event) => {
+        this.setState({title: event.target.value})
+        console.log(this.state)
+    }
+
+    myDescriptionHandler = (event) => {
+      this.setState({description: event.target.value})
+      console.log(this.state)
+    }
+
+    myTagHandler = (event) => {
+      this.setState({tags: event.target.value})
+      console.log(this.state)
+    }
+
     render() {
       return (
         <form>
       
       
+      Title
+      <input
+        type='text'
+        onChange={this.myTitleHandler}
+      />
+
+      Description
       <input
         
         type='text'
-        onChange={this.myChangeHandler}
+        onChange={this.myDescriptionHandler}
       />
+
+      Tags
+      <input
+        
+        type='text'
+        onChange={this.myTagHandler}
+      />
+      <button type="submit" onSubmit={this.saveStage} >Submit Drill</button>
+      
 
       </form>
       );

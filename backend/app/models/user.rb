@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-    has_many :drills
+    # has_many :drills
 end
