@@ -4,13 +4,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CreateDrill from './components/CreateDrill';
 import './App.css';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './components/Home'
-import Navbar from './components/Navbar'
+import { NavigationBar } from './components/NavigationBar'
 import Drills from './components/Drills'
 import { fetchDrill } from './actions/drillActions'
 import SearchDrills from './components/SearchDrills'
-
+import {Layout} from "./components/Layout"
+import IndividualTraining from "./components/Training"
 class App extends Component {   
   
   componentDidMount() {
@@ -23,17 +24,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <React.Fragment>
         <Router>
-      <div>
-        <Navbar />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/create" component={CreateDrill} />
-        <Route exact path="/drills" component={Drills} />
-        <Route exact path="/searchdrills" component={SearchDrills}/>
-      </div>
-    </Router>
-      </div>
+          <NavigationBar />
+          <Layout>
+            <Switch>
+              <Route exact path="/training" component={IndividualTraining} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/create" component={CreateDrill} />
+              <Route exact path="/drills" component={Drills} />
+              <Route exact path="/searchdrills" component={SearchDrills}/>
+            </Switch>
+          </Layout>
+        </Router>
+      </React.Fragment>
     );
   }
 }

@@ -19,7 +19,7 @@ class Searchbar extends React.Component {
 
   render() {
     return <form onSubmit={this.setRedirect}>
-        <input type="text" onChange={this.mySearchHandler}></input>
+        <input placeholder="Search Drills" type="text" onChange={this.mySearchHandler}></input>
         <button type="submit">
           {console.log(this.state)}
           Search</button>

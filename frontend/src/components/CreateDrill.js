@@ -48,10 +48,18 @@ export default class CreateDrill extends Component {
   render() {
     return (
 
-        <div>
-      <Stage ref="bigStage" id="bigStage" width={1000} height={500}>
+        <div style={{paddingTop: "40px"}}>
+      <Stage  ref="bigStage" id="bigStage" width={1000} height={500}>
         <Layer ref="bigLayer">
-        
+            <Rect 
+              x={150}
+              y={0}
+              width={800}
+              height={500}
+              fill="lightgreen"
+              stroke="green"
+            />
+
             <Circle 
                 x={100} 
                 y={100} 
@@ -381,25 +389,24 @@ export default class CreateDrill extends Component {
       </Stage>
      
 
-      <form>
-      Title
+      <form style={{margin: "auto", width: "50%", padding: "10px"}}>
+      
       <input
+        placeholder="Title"
         type='text'
         onChange={this.myTitleHandler}
       />
-
-      Description
+      
       <input
-        
-        type='text'
-        onChange={this.myDescriptionHandler}
-      />
-
-      Category
-      <input
-        
+        placeholder="Category"
         type='text'
         onChange={this.myCategoryHandler}
+      />
+
+      <input
+        placeholder="Description"
+        type='text-field'
+        onChange={this.myDescriptionHandler}
       />
       <button onClick={this.handleSubmit} >Submit Drill</button>
       

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import drillsReducer from './reducers/drillsReducer.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = createStore(drillsReducer, applyMiddleware(thunk))
 

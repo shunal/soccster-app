@@ -1,7 +1,6 @@
 import React from 'react'
 import Konva from 'konva';
 
-
 export default class GetDrills extends React.Component {
     constructor(props) {
       super(props);
@@ -45,12 +44,10 @@ export default class GetDrills extends React.Component {
 
     render(){
       return(
-      <div>
-        {this.props.title}
+      <div class="container" style={{paddingBottom: "20px"}}>
+        <h1 style={{textAlign: "center", padding: "10px"}}>{this.props.title}</h1>
         <div id={`container${this.props.id}`}></div>
-        
-        <div></div>
-        {this.props.description}
+        <h4 style={{textAlign: "center", padding: "10px"}}>{this.props.description}</h4>
       </div>
       )
     }
