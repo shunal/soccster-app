@@ -36,7 +36,7 @@ export default class GetDrills extends React.Component {
   }
 
 
-  class Drill extends React.Component {
+  export class Drill extends React.Component {
 
     componentDidMount(){
      Konva.Node.create(this.props.drawing,`container${this.props.id}`)

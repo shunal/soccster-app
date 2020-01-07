@@ -4,7 +4,7 @@ class CreateDrills < ActiveRecord::Migration[6.0]
       t.belongs_to :user
       t.string :title
       t.string :description
-      t.string :video
+      t.string :category
       t.string :drawing
       t.timestamps
     end

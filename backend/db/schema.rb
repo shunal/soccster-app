@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_12_23_223718) do
     t.integer "user_id"
     t.string "title"
     t.string "description"
-    t.string "video"
+    t.string "category"
     t.string "drawing"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

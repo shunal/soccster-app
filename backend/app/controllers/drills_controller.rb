@@ -24,7 +24,7 @@ class DrillsController < ApplicationController
     private
 
     def drill_params
-            params.require(:drill).permit(:title, :description, :drawing)
+            params.require(:drill).permit(:title, :description, :drawing, :category)
     end 
     
 end

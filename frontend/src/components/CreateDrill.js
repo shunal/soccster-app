@@ -19,7 +19,7 @@ export default class CreateDrill extends Component {
       body: JSON.stringify({
         title: this.state.title,
         description: this.state.description,
-        tags: this.state.tags,
+        category: this.state.category,
         drawing: this.state.drawing
         })
       }
@@ -36,8 +36,8 @@ export default class CreateDrill extends Component {
     console.log(this.state)
   }
 
-  myTagHandler = (event) => {
-    this.setState({tags: event.target.value})
+  myCategoryHandler = (event) => {
+    this.setState({category: event.target.value})
     console.log(this.state)
   }
 
@@ -395,11 +395,11 @@ export default class CreateDrill extends Component {
         onChange={this.myDescriptionHandler}
       />
 
-      Tags
+      Category
       <input
         
         type='text'
-        onChange={this.myTagHandler}
+        onChange={this.myCategoryHandler}
       />
       <button onClick={this.handleSubmit} >Submit Drill</button>
       
