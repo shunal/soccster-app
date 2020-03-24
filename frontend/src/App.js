@@ -1,6 +1,5 @@
 // import React from 'react';
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
 import CreateDrill from './components/CreateDrill';
 import './App.css';
