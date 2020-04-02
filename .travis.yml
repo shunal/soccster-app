@@ -6,7 +6,7 @@ before_install:
     - docker build -t shunal/soccster-test -f ./frontend/Dockerfile.dev ./frontend
 
 scripts:
-    - docker run -e CI=true shunal/react-test npm test
+    - docker run -e CI=true shunal/soccster-test npm test
 
 after_succcess:
     - docker build -t shunal/soccster-frontend ./frontend
