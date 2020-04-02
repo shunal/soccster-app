@@ -1,0 +1,19 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t shunal/soccster-test -f ./frontend/Dockerfile.dev ./frontend
+
+scripts:
+    - docker run -e CI=true shunal/react-test npm test
+
+after_succcess:
+    - docker build -t shunal/soccster-frontend ./frontend
+    - docker build -t shunal/soccster-nginx ./nginx 
+    - docker build -t shunal/soccster-backend ./backend
+
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push shunal/soccster-frontend
+    - docker push shunal/soccster-nginx
+    - docker push shunal/soccster-backend
