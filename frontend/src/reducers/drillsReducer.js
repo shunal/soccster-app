@@ -3,14 +3,17 @@ const drillsReducer = (state = { drills: [], loading: false }, action) => {
       case 'LOADING_DRILLS':
         return {
           ...state,
-          drills: [...state.drills],
           loading: true
+        }
+      case 'GET_DRILLS':
+        return {
+          drills: action.drills,
+          loading: false
         }
       case 'ADD_DRILL':
         return {
           ...state,
-          drills: action.drills,
-          loading: false
+          drills: [...state.drills, action.drill]
         }
       default:
         return state;

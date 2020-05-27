@@ -1,14 +1,22 @@
 import React from 'react';
-// import Konva from 'konva';
-// import GetDrills from './getDrills.js'
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
+
   render() {
+    console.log(this.props.drills)
     return (
-      <h1>This is the Homepage</h1>
+      <div>
+        <h1>Home</h1>
+      </div>
     )
       
   }
 }
+const mapStateToProps = state => {
+  return {
+    drills: state.drills
+  }
+}
  
-export default Home;
+export default connect(mapStateToProps)(Home)

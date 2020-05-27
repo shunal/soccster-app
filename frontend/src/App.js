@@ -7,19 +7,17 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './components/Home'
 import { NavigationBar } from './components/NavigationBar'
 import Drills from './components/Drills'
-import { fetchDrill } from './actions/drillActions'
+import { fetchDrills } from './actions/drillActions'
 import SearchDrills from './components/SearchDrills'
 import {Layout} from "./components/Layout"
 import IndividualTraining from "./components/Training"
+
 class App extends Component {   
   
   componentDidMount() {
-    console.log(this.props)
-
-    this.props.fetchDrill()
+    this.props.fetchDrills()
   }
-  
-  
+
 
   render() {
     return (
@@ -41,19 +39,15 @@ class App extends Component {
   }
 }
 
-
-
-
 const mapStateToProps = state => {
   return {
-    drills: state.drills,
-    loading: state.loading
+    drills: state.drills
   }
 }
  
 const mapDispatchToProps = dispatch => {
   return {
-    fetchDrill: () => dispatch(fetchDrill())
+    fetchDrills: () => dispatch(fetchDrills())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

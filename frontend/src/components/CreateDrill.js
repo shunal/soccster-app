@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Stage, Layer, Circle, Rect, RegularPolygon, } from 'react-konva';
 import Konva from 'konva';
+import { connect } from 'react-redux';
 
 
+const mapStateToProps = state => {
+  return {
+    drills: state.drills
+  }
+}
 
-export default class CreateDrill extends Component {
+class CreateDrill extends Component {
   state = {
     x: 0,
     y: 0,
@@ -24,26 +30,21 @@ export default class CreateDrill extends Component {
         })
       }
      );
+     window.location.reload(true);
+     window.location.href = "/drills";
   }
 
   myTitleHandler = (event) => {
       this.setState({title: event.target.value})
-      console.log(this.state)
   }
 
   myDescriptionHandler = (event) => {
     this.setState({description: event.target.value})
-    console.log(this.state)
   }
 
   myCategoryHandler = (event) => {
     this.setState({category: event.target.value})
-    console.log(this.state)
   }
-
-  
-
-
 
   render() {
     return (
@@ -120,20 +121,15 @@ export default class CreateDrill extends Component {
                 onDragEnd = {() =>{
                     let layer = this.refs.bigLayer;
                     let stage = this.refs.bigStage;
-                     
                     let circle = stage.findOne("." + "draggableRedCircle");
                     circle.position({x: 100, y: 50});
-                    this.refs.bigStage.draw();
                     let lastPosition = circle._lastPos
                     let json = stage.toJSON();
                     this.setState({
                         drawing: json,
                         x: lastPosition.x,
                         y: lastPosition.y
-
                     })
-                    
-                    
                     console.log(this.state);
                     
                     let newCircle = new Konva.Circle({
@@ -142,13 +138,9 @@ export default class CreateDrill extends Component {
                         radius: 15,
                         fill: 'red',
                         draggable: true
-
-                        
                       });
-                
                       // add the shape to the layer
                       this.refs.bigLayer.add(newCircle);
-                      
                       // add the layer to the stage
                       this.refs.bigStage.add(layer);
                     }
@@ -336,9 +328,8 @@ export default class CreateDrill extends Component {
                     }
                 
                 }
-                
+        
             />
-
             <Circle 
                 x={95} 
                 y={300} 
@@ -381,13 +372,11 @@ export default class CreateDrill extends Component {
                       // add the layer to the stage
                       this.refs.bigStage.add(layer);
 
-                    }
-                
+                    }                
                 }
             />      
         </Layer>
       </Stage>
-     
 
       <form style={{margin: "auto", width: "50%", padding: "10px"}}>
       
@@ -418,3 +407,4 @@ export default class CreateDrill extends Component {
   }
 }
 
+export default connect(mapStateToProps) (CreateDrill)
