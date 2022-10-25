@@ -18,7 +18,6 @@ class App extends Component {
     this.props.fetchDrills()
   }
 
-
   render() {
     return (
       <React.Fragment>
