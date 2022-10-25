@@ -45,7 +45,6 @@ class FilteredDrill extends React.Component {
 
     componentDidMount(){
      Konva.Node.create(this.props.drawing,`container${this.props.id}`)
-
     }
 
     render(){
