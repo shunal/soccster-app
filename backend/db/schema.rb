@@ -11,8 +11,11 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2019_12_23_223718) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "drills", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "title"
     t.string "description"
     t.string "category"
@@ -23,8 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2019_12_23_223718) do
   end
 
   create_table "drills_tags", id: false, force: :cascade do |t|
-    t.integer "drill_id", null: false
-    t.integer "tag_id", null: false
+    t.bigint "drill_id", null: false
+    t.bigint "tag_id", null: false
     t.index ["drill_id", "tag_id"], name: "index_drills_tags_on_drill_id_and_tag_id"
     t.index ["tag_id", "drill_id"], name: "index_drills_tags_on_tag_id_and_drill_id"
   end
